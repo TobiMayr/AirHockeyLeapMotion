@@ -99,7 +99,7 @@ public class PlayerControl : MonoBehaviour
         if (c.gameObject.tag == "Puck")
         {
            // puck.velocity = c.;
-            puck.AddForce(c.relativeVelocity);
+            puck.AddForce(c.relativeVelocity/20, ForceMode.Impulse);
         }
         // code mit pfeil tasten
             /*if (c.gameObject.tag == "Puck")
