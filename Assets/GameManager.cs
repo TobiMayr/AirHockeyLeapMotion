@@ -28,15 +28,19 @@ public class GameManager : MonoBehaviour {
         //Reset all the gameObjects to original position to start a new game session
         if (status == 1) //recieved when striker hits any goal, check Striker.cs
             puck.transform.position = new Vector3(0.06f, puck.transform.position.y, 2.82f);//if  enemy wins, 
-                                                                                                 //place on player side
-        else
+                                                                                           //place on player side
+        else if (status == 0)
             puck.transform.position = new Vector3(0.06f, puck.transform.position.y, -4.59f);
+
+        
+            
 
         puck.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);//stop the striker
         player.transform.position = new Vector3(0.88f, player.transform.position.y, -8.17f);
         ai.transform.position = new Vector3(0.88f, ai.transform.position.y, 6.65f);
     }
 
+   
 
 }
 

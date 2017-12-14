@@ -27,6 +27,7 @@ public class Pickup : MonoBehaviour
             {
 
                 rb.isKinematic = false;
+                rb.freezeRotation = true;
 
             }
         }

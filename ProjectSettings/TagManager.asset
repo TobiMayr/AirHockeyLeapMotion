@@ -9,6 +9,7 @@ TagManager:
   - Goal_AI
   - side
   - front
+  - invisible_box
   layers:
   - Default
   - TransparentFX

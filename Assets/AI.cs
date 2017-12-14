@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AI : MonoBehaviour {
-    public float speed;
+    
     GameObject Puck;
     Rigidbody puckRB;
     float forceDir;
@@ -76,12 +76,12 @@ public class AI : MonoBehaviour {
         {
             counter = 0f; //on hitting reset the wait time...
             forceDir = (int)Random.Range(0, 10);//for hitting to the left or right
-            smashCance = (int)Random.Range(0, 10); //chance that it will smash the striker
+            smashCance = 100; //chance that it will smash the striker
                                                    //hit the striker with force
             if (forceDir <= 5)
-                puckRB.velocity = new Vector3(-PuckSpeed, puckRB.velocity.y, -PuckSpeed);
+                puckRB.AddForce(puckRB.velocity.x/10, 0, puckRB.velocity.z/10, ForceMode.Impulse);
             else
-                puckRB.velocity = new Vector3(PuckSpeed, puckRB.velocity.y, -PuckSpeed);
+                puckRB.AddForce(puckRB.velocity.x/10, 0, puckRB.velocity.z/10 , ForceMode.Impulse);
 
         }
     }

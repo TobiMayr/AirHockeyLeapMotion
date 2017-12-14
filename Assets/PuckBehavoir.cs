@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PuckBehavoir : MonoBehaviour
 {
-    
+
     GameManager gm;
-   
-   
+    Vector3 lastpos;
+    Transform myTransform;
+    bool ismoving;
+    GameObject bandeS;
+    bool stopped = false;
     Rigidbody puck;
-    
+    float stoppedTime;
+
     private Vector3 oldVelocity;
     void Awake()
     {
@@ -21,18 +25,49 @@ public class PuckBehavoir : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         puck = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
+        bandeS = GameObject.FindGameObjectWithTag("side");
+        myTransform = transform;
+        lastpos = myTransform.position;
+        ismoving = false;
     }
-   
 
 
-  
+
+
     void Update()
     {
         // because we want the velocity after physics, we put this in fixed update
-        oldVelocity = puck.velocity;
+        /*if (puck.position.x != lastpos.x)
+        {
+            ismoving = true;
+            stopped = false;
+        }
+        else
+            ismoving = false;
+         while(ismoving == false)
+         {
+            if(!stopped)
+            {
+                stopped = true;
+                stoppedTime = Time.time;
+            }
+            if(Time.time - stoppedTime > 3f)
+            {
+                puck.AddForce(8, 0, 8, ForceMode.Impulse);
+            }
+
+         }
+        lastpos = myTransform.position;*/
+
+
     }
+
+
+
     void OnTriggerEnter(Collider c)
     {
+
+
         if (c.tag == "Goal_Player")
         {
             gm.AIScore += 1f;
@@ -44,34 +79,29 @@ public class PuckBehavoir : MonoBehaviour
             gm.Reset(0);
         }
 
+
+
+
     }
     //der versuch des aprallens an der wand
     void OnCollisionEnter(Collision c)
     {
+
         if (c.gameObject.tag == "side")
         {
-            
-            ContactPoint contact = c.contacts[0];// = punkte wo die collision statt findet mit dem puck rigidbody
+            RaycastHit hit;
+            Ray ray = new Ray(puck.position, puck.velocity);
+            if (Physics.Raycast(ray, out hit))
+            {
 
-            // reflect our old velocity off the contact point's normal vector
-            Vector3 reflectedVelocity = Vector3.Reflect(oldVelocity, contact.normal);
+                Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit.normal);
+                puck.AddForce(reflectVec.x/10,0,reflectVec.z/10,ForceMode.Acceleration);
+               
 
-            // assign the reflected velocity back to the rigidbody
-            puck.velocity += contact.normal ;
-            // rotate the object by the same ammount we changed its velocity
-            Quaternion rotation = Quaternion.FromToRotation(oldVelocity, reflectedVelocity);
-            transform.rotation = rotation * transform.rotation;
+            }
         }
-        else if (c.gameObject.tag=="front")
-        {
-            ContactPoint contact = c.contacts[0];
-            Vector3 reflectedVelocity = Vector3.Reflect(oldVelocity, contact.normal);
-            puck.velocity += contact.normal;
-            Quaternion rotation = Quaternion.FromToRotation(oldVelocity, reflectedVelocity);
-            transform.rotation = rotation * transform.rotation;
-        }
+
     }
-    
-}
 
+}
         
