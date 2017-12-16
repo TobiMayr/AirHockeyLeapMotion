@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         cameraTransform = Camera.main.transform;
+
         Sprite[] thumbnails = Resources.LoadAll<Sprite>("Levels");
         foreach(Sprite thumbnail in thumbnails)
         {
@@ -86,7 +87,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void LoadLevel(string sceneName)
+    public void LoadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
