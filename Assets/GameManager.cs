@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public float AIScore;
     public float PlayerScore;
-    GameObject puck, player, ai, pS, eS; //pS - playerScore, eS - enemyScore
+    GameObject puck, player, ai, pS, eS, powerup_w; //pS - playerScore, eS - enemyScore
                                             // Use this for initialization
     void Start () {
         PlayerScore = 0f;
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
         ai = GameObject.Find("AI");
         pS = GameObject.Find("PlayerScore");
         eS = GameObject.Find("AIScore");
+        powerup_w = GameObject.Find("powerup_w");
     }
 	
 	// Update is called once per frame

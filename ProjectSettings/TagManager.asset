@@ -10,6 +10,10 @@ TagManager:
   - side
   - front
   - invisible_box
+  - puck_sound
+  - goal_sound
+  - AI
+  - powerup_w
   layers:
   - Default
   - TransparentFX

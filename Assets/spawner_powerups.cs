@@ -35,7 +35,7 @@ public class spawner_powerups : MonoBehaviour {
             //3 powerups. 0,1,2
             
             Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), 1,Random.Range(-spawnValues.z, spawnValues.z));
-            Instantiate (powerups[randomPowerUp], spawnPosition + transform.TransformPoint (-8,-7,7), gameObject.transform.rotation);
+            Instantiate (powerups[randomPowerUp], spawnPosition + transform.TransformPoint (4f,-0.5f,-4.3f), gameObject.transform.rotation);
             yield return new WaitForSeconds(spawnWait);
         }
     }
