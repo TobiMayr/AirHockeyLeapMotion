@@ -95,13 +95,39 @@ public class PuckBehavoir : MonoBehaviour
             {
 
                 Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit.normal);
-                puck.AddForce(reflectVec.x/10,0,reflectVec.z/10,ForceMode.Acceleration);
-               
+                puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10, ForceMode.Acceleration);
+
 
             }
         }
+            if (c.gameObject.tag == "Wall_R")
+            {
+                RaycastHit hit2;
+                Ray ray2 = new Ray(puck.position, puck.velocity);
+                if (Physics.Raycast(ray2, out hit2))
+                {
 
-    }
+                    Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit2.normal);
+                    puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10, ForceMode.Acceleration);
+
+
+                }
+            }
+            if (c.gameObject.tag == "Wall_L")
+            {
+                RaycastHit hit3;
+                Ray ray3 = new Ray(puck.position, puck.velocity);
+                if (Physics.Raycast(ray3, out hit3))
+                {
+
+                    Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit3.normal);
+                    puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10, ForceMode.Acceleration);
+
+
+                }
+            }
+
+        }
 
 }
         

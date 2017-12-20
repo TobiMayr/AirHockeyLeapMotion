@@ -14,6 +14,9 @@ TagManager:
   - goal_sound
   - AI
   - powerup_w
+  - powerup_b
+  - Wall_L
+  - Wall_R
   layers:
   - Default
   - TransparentFX
