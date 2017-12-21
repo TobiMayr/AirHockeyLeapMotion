@@ -5,7 +5,11 @@ using UnityEngine;
 public class GameSettings //: MonoBehaviour 
 {
 	public bool fullscreen;
-	public int textureQuality;
+    public bool bloom;
+    public bool paa;
+    public bool ao;
+    public bool tm;
+    public int textureQuality;
 	public int Aa;
 	public int vSync;
 	public int resolutionIndex;

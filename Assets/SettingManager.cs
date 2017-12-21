@@ -16,9 +16,12 @@ public class SettingManager : MonoBehaviour
 	public Dropdown vSyncDropdown;
 	public Resolution[] resolutions;
 	public GameSettings gameSettings;
-
-	//EXIT MENU
-	public Canvas quitMenu;
+    public Toggle bloomToggle;
+    public Toggle paaToggle;
+    public Toggle aoToggle;
+    public Toggle tmToggle;
+    //EXIT MENU
+    public Canvas quitMenu;
 	public Button exitText;
 	public Button YesButton;
 	public Button NoButton;
@@ -36,28 +39,34 @@ public class SettingManager : MonoBehaviour
 	public Slider masterVolumeSlider;
 	public AudioSource musicSource;
 
+    private UnityEngine.PostProcessing.PostProcessingBehaviour postProcessingbehaviour;
+    private UnityEngine.PostProcessing.PostProcessingProfile profile;
 
-
-	void OnEnable()
+    void OnEnable()
 	{
-		gameSettings = new GameSettings ();
+        gameSettings = new GameSettings ();
 		fullscreenToggle.onValueChanged.AddListener(delegate { OnFullscreenToggle(); });
 		resolutionDropdown.onValueChanged.AddListener(delegate { OnResolutionChange(); });
 		textureQualityDropdown.onValueChanged.AddListener(delegate {OnTextureQualityChange ();});
 		AaDropdown.onValueChanged.AddListener(delegate {OnAaChange ();});
 		vSyncDropdown.onValueChanged.AddListener(delegate {OnVsyncChange ();});
 		applyButton.onClick.AddListener (delegate {OnApplyButtonClick (clicked:true);});
-		exitText.onClick.AddListener (delegate {OnExitClick (clicked:true);});
-		optionsbutton.onClick.AddListener (delegate {OnOptionsClick (clicked:true);});
-		YesButton.onClick.AddListener (delegate {OnYesClick (clicked: true);});
-		NoButton.onClick.AddListener (delegate {NoPress ();});
-		graphicsButton.onClick.AddListener (delegate {OnGraphicsClick (clicked: true);});
-		audioButton.onClick.AddListener (delegate {OnAudioClick (clicked: true);});
-		musicVolumeSlider.onValueChanged.AddListener (delegate { OnMusicVolumeChange();});
+        bloomToggle.onValueChanged.AddListener(delegate { OnBloomToggle(); });
+        paaToggle.onValueChanged.AddListener(delegate { OnPaaToggle(); });
+        aoToggle.onValueChanged.AddListener(delegate { OnAoToggle(); });
+        tmToggle.onValueChanged.AddListener(delegate { OnTmToggle(); });
+        //exitText.onClick.AddListener (delegate {OnExitClick (clicked:true);});
+        //optionsbutton.onClick.AddListener (delegate {OnOptionsClick (clicked:true);});
+        //YesButton.onClick.AddListener (delegate {OnYesClick (clicked: true);});
+        //NoButton.onClick.AddListener (delegate {NoPress ();});
+        //graphicsButton.onClick.AddListener (delegate {OnGraphicsClick (clicked: true);});
+        //audioButton.onClick.AddListener (delegate {OnAudioClick (clicked: true);});
+        //musicVolumeSlider.onValueChanged.AddListener (delegate { OnMusicVolumeChange();});
+        masterVolumeSlider.onValueChanged.AddListener(delegate { OnMasterVolumeChange(); });
 
 
 
-		resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions;
 		foreach (Resolution resolution in resolutions) 
 		{
 			resolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
@@ -71,13 +80,39 @@ public class SettingManager : MonoBehaviour
 		quitMenu.enabled = false;*/
 	}
 
-	public void OnFullscreenToggle()
+    void Start()
+    {
+        postProcessingbehaviour = Camera.main.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour>();
+        profile = postProcessingbehaviour.profile;
+    }
+
+    public void OnFullscreenToggle()
 	{
 		gameSettings.fullscreen = Screen.fullScreen = fullscreenToggle.isOn;
 
 	}
 
-	public void OnResolutionChange()
+    public void OnBloomToggle()
+    {
+        gameSettings.bloom = profile.bloom.enabled = bloomToggle.isOn;
+    }
+
+    public void OnPaaToggle()
+    {
+        gameSettings.paa = profile.antialiasing.enabled = paaToggle.isOn;
+    }
+
+    public void OnAoToggle()
+    {
+        gameSettings.ao = profile.ambientOcclusion.enabled = aoToggle.isOn;
+    }
+
+    public void OnTmToggle()
+    {
+        gameSettings.tm = profile.colorGrading.enabled = tmToggle.isOn;
+    }
+
+    public void OnResolutionChange()
 	{
 		Screen.SetResolution (resolutions [resolutionDropdown.value].width, resolutions [resolutionDropdown.value].height, Screen.fullScreen);
 		gameSettings.resolutionIndex = resolutionDropdown.value;
@@ -120,8 +155,6 @@ public class SettingManager : MonoBehaviour
 		/*jsonData = File.ReadAllText(Application.persistentDataPath + "/gamesettings.json");
 		gameSettings = JsonUtility.FromJson<GameSettings>(jsonData);﻿*/
 
-
-		musicVolumeSlider.value = gameSettings.musicVolume;
 		AaDropdown.value = gameSettings.Aa;
 		vSyncDropdown.value = gameSettings.vSync;
 		textureQualityDropdown.value = gameSettings.textureQuality;
