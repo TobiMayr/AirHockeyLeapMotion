@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e80188407a094df4b9c778730798ea3c
-timeCreated: 1515022016
+guid: 68f8930767c495d479e69e31a8b99e6a
+timeCreated: 1515026377
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Bauer
+  fontName: Roboto Condensed
   fontNames:
-  - Bauer
+  - Roboto Condensed
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

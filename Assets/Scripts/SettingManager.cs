@@ -50,7 +50,7 @@ public class SettingManager : MonoBehaviour
 		textureQualityDropdown.onValueChanged.AddListener(delegate {OnTextureQualityChange ();});
 		AaDropdown.onValueChanged.AddListener(delegate {OnAaChange ();});
 		vSyncDropdown.onValueChanged.AddListener(delegate {OnVsyncChange ();});
-		applyButton.onClick.AddListener (delegate {OnApplyButtonClick (clicked:true);});
+		//applyButton.onClick.AddListener (delegate {OnApplyButtonClick (clicked:true);});
         bloomToggle.onValueChanged.AddListener(delegate { OnBloomToggle(); });
         paaToggle.onValueChanged.AddListener(delegate { OnPaaToggle(); });
         aoToggle.onValueChanged.AddListener(delegate { OnAoToggle(); });
