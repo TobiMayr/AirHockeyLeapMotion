@@ -33,9 +33,6 @@ public class MainMenu : MonoBehaviour
             GameObject container = Instantiate(levelButtonPrefab) as GameObject;
             container.GetComponent<Image>().sprite = thumbnail;
             container.transform.SetParent(levelButtonContainer.transform, false);
-
-            string sceneName = thumbnail.name;
-            container.GetComponent<Button>().onClick.AddListener(() => LoadLevel(sceneName));
         }
         currentMenu = middleMenu;
         menuList = new List<Transform>();
@@ -87,9 +84,16 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void LoadLevel(string sceneName)
+    public void LoadMatchMode()
     {
-        SceneManager.LoadScene(sceneName);
+        GameManager.selectedMode = GameManager.GameMode.Match;
+        SceneManager.LoadScene("Scene");
+    }
+
+    public void LoadArcadeMode()
+    {
+        GameManager.selectedMode = GameManager.GameMode.Arcade;
+        SceneManager.LoadScene("Scene");
     }
 
     public void LookAtMenu(Transform menuTransform)

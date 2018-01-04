@@ -11,6 +11,16 @@ public class GameManager : MonoBehaviour {
     GameObject puck, player, ai, pS, eS, powerup_w; //pS - playerScore, eS - enemyScore
     private bool isActive = false;                 // Use this for initialization
     public GameObject GameEndMenu;
+    public enum GameMode { Match, Arcade};
+    public static GameMode selectedMode;
+    private static GameManager instance;
+    public static GameManager Instance { get { return instance; } }
+
+    void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start () {
         PlayerScore = 0f;

@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-using Leap.Unity;
+//using Leap.Unity;
 using System.Collections;
 
 
@@ -46,25 +46,6 @@ using System.Collections;
             }
         }
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void releaseTarget()
         {
             if (_target && _target.activeInHierarchy)
