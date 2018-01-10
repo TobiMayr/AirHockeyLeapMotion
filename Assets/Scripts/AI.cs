@@ -21,7 +21,8 @@ public class AI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Puck = GameObject.FindGameObjectWithTag("Puck");
-        puckRB = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
+        Debug.Log(Puck);
+        puckRB = Puck.GetComponent<Rigidbody>();
 
         //schwiereigkeitsetzten
         //
