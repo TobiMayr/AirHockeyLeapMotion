@@ -6,29 +6,43 @@ public class LevelManager : MonoBehaviour
     private static LevelManager instance;
     public static LevelManager Instance { get { return instance; } }
     public Text timerText;
-    private float startTime;
+    private float endTime;
     private float levelDuration;
+    private float TimerTime = 180; //3 minutes
+    public bool countDownDone = false;
 
     // Use this for initialization
     void Start()
     {
         instance = this;
-        startTime = Time.time;
+        endTime = Time.time + TimerTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (GameManager.selectedMode)
+        if(instance.countDownDone == true)
         {
-            case GameManager.GameMode.Match:
-                break;
-            case GameManager.GameMode.Arcade:
-                levelDuration = Time.time - startTime;
-                string minutes = ((int)levelDuration / 60).ToString("00");
-                string seconds = (levelDuration % 60).ToString("00.00");
-                timerText.text = minutes + ":" + seconds;
-                break;
+                switch (GameManager.selectedMode)
+                {
+                    case GameManager.GameMode.Match:
+                        break;
+                    case GameManager.GameMode.Arcade:
+                        DisplayTimeLeft();
+                        break;
+               }
         }
+        else
+        {
+            endTime = Time.time + TimerTime;
+        }
+    }
+
+    private void DisplayTimeLeft()
+    {
+        levelDuration = endTime - Time.time;
+        string minutes = ((int)levelDuration / 60).ToString("00");
+        string seconds = (levelDuration % 60).ToString("00.00");
+        timerText.text = minutes + ":" + seconds;
     }
 }
