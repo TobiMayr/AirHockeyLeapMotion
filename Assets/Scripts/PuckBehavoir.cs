@@ -102,8 +102,6 @@ public class PuckBehavoir : MonoBehaviour
 
                 Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit.normal);
                 puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10, ForceMode.Force);
-
-
             }
         }
     }

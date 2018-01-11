@@ -21,16 +21,16 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(instance.countDownDone == true)
+        if (instance.countDownDone == true)
         {
-                switch (GameManager.selectedMode)
-                {
-                    case GameManager.GameMode.Match:
-                        break;
-                    case GameManager.GameMode.Arcade:
-                        DisplayTimeLeft();
-                        break;
-               }
+            switch (GameManager.selectedMode)
+            {
+                case GameManager.GameMode.Match:
+                    break;
+                case GameManager.GameMode.Arcade:
+                    DisplayTimeLeft();
+                    break;
+            }
         }
         else
         {
@@ -41,8 +41,15 @@ public class LevelManager : MonoBehaviour
     private void DisplayTimeLeft()
     {
         levelDuration = endTime - Time.time;
-        string minutes = ((int)levelDuration / 60).ToString("00");
-        string seconds = (levelDuration % 60).ToString("00.00");
-        timerText.text = minutes + ":" + seconds;
+        if (levelDuration < 0)
+        {
+            GameManager.Instance.GameEndMenu.SetActive(true);
+        }
+        else
+        {
+            string minutes = ((int)levelDuration / 60).ToString("00");
+            string seconds = (levelDuration % 60).ToString("00.00");
+            timerText.text = minutes + ":" + seconds;
+        }
     }
 }
