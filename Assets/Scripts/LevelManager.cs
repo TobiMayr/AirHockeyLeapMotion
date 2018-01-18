@@ -7,8 +7,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get { return instance; } }
     public Text timerText;
     private float endTime;
-    private float levelDuration;
-    private float TimerTime = 180; //3 minutes
+    public float levelDuration;
+    public float TimerTime = 180; //3 minutes
     public bool countDownDone = false;
 
     // Use this for initialization
@@ -43,7 +43,8 @@ public class LevelManager : MonoBehaviour
         levelDuration = endTime - Time.time;
         if (levelDuration < 0)
         {
-            GameManager.Instance.GameEndMenu.SetActive(true);
+            
+            GameManager.Instance.GameArcadeWin.SetActive(true);
         }
         else
         {
@@ -51,5 +52,10 @@ public class LevelManager : MonoBehaviour
             string seconds = (levelDuration % 60).ToString("00.00");
             timerText.text = minutes + ":" + seconds;
         }
+    }
+
+    private void Restart()
+    {
+
     }
 }

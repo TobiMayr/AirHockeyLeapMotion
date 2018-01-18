@@ -91,7 +91,7 @@ public class PuckBehavoir : MonoBehaviour
 
     }
     //der versuch des aprallens an der wand
-    void OnCollisionEnter(Collision c)
+   /* void OnCollisionEnter(Collision c)
     {
         if (c.gameObject.tag == "side" || c.gameObject.tag == "Wall_R" || c.gameObject.tag == "Wall_L" || c.gameObject.tag == "front")
         {
@@ -101,9 +101,9 @@ public class PuckBehavoir : MonoBehaviour
             {
 
                 Vector3 reflectVec = Vector3.Reflect(puck.velocity, hit.normal);
-                puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10, ForceMode.Force);
+                puck.AddForce(reflectVec.x / 10, 0, reflectVec.z / 10);
             }
         }
-    }
+    }*/
 }
 

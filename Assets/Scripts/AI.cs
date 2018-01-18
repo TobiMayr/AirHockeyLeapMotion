@@ -29,12 +29,12 @@ public class AI : MonoBehaviour {
         // je höher die schwierigkeit die desto defensiver und mehr zeit zum denken hat die Ai
         //wenn die schwierigkeit = 1 ist ist die Ai nicht zu besiegen 
 
-        if (difficulty < 0.45f)
+        if (difficulty < 0.5f)
         { //easy
             basePoint = new Vector3(0.88f, transform.position.y, 0.85f);
             difficulty = 0.2f;
         }
-        else if (difficulty >= 0.45f && difficulty < 1f)
+        else if (difficulty >= 0.5f && difficulty < 1f)
         {
             basePoint = new Vector3(0.88f, transform.position.y, 3.3f);
             difficulty = 0.7f;
