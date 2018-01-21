@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuckBehavoir : MonoBehaviour
 {
 
-    GameManager gm;
+    LevelManager lm;
     Vector3 lastpos;
     Transform myTransform;
     bool ismoving;
@@ -23,7 +23,7 @@ public class PuckBehavoir : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        lm = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelManager>();
         puck = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
         bandeS = GameObject.FindGameObjectWithTag("side");
         myTransform = transform;
@@ -77,13 +77,13 @@ public class PuckBehavoir : MonoBehaviour
 
         if (c.tag == "Goal_Player")
         {
-            gm.AIScore += 1f;
-            gm.Reset(1);
+            lm.AIScore += 1f;
+            lm.Reset(1);
         }
         if (c.tag == "Goal_AI")
         {
-            gm.PlayerScore += 1f;
-            gm.Reset(0);
+            lm.PlayerScore += 1f;
+            lm.Reset(0);
         }
 
 

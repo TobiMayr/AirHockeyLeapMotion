@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class power_up_x_pionts : MonoBehaviour
 {
 
     Rigidbody puck;
     Rigidbody AI;
-    GameManager gm;
+    LevelManager lm;
 
 
     // Use this for initialization
@@ -16,7 +13,7 @@ public class power_up_x_pionts : MonoBehaviour
     {
         puck = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
         AI = GameObject.FindGameObjectWithTag("AI").GetComponent<Rigidbody>();
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        lm = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -31,16 +28,8 @@ public class power_up_x_pionts : MonoBehaviour
         {
             Destroy(this.gameObject);
             puck.velocity = puck.velocity;
-            gm.PlayerScore += 2f;
-
-
-
-
-
-
-
+            lm.PlayerScore += 2f;
         }
     }
-
 
 }

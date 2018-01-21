@@ -43,7 +43,8 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if(cameraDesiredLookAt != null)
+        Debug.Log(cameraDesiredLookAt.rotation);
+        if (cameraDesiredLookAt != null)
         {
             cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, cameraDesiredLookAt.rotation, CAMERA_TRANSITION_SPEED * Time.deltaTime);
         }

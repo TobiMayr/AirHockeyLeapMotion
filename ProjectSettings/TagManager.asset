@@ -17,6 +17,8 @@ TagManager:
   - powerup_b
   - Wall_L
   - Wall_R
+  - Main Menu
+  - LevelController
   layers:
   - Default
   - TransparentFX
