@@ -7,7 +7,7 @@ using System.IO;
 public class SettingManager : MonoBehaviour 
 {
 	//SAVE BUTTON
-	public Button applyButton;
+	//public Button applyButton;
 	//GRAPHICS OPTIONS
 	public Toggle fullscreenToggle;
 	public Dropdown resolutionDropdown;
@@ -21,23 +21,23 @@ public class SettingManager : MonoBehaviour
     public Toggle aoToggle;
     public Toggle tmToggle;
     //EXIT MENU
-    public Canvas quitMenu;
-	public Button exitText;
-	public Button YesButton;
-	public Button NoButton;
+    //public Canvas quitMenu;
+	//public Button exitText;
+	//public Button YesButton;
+	//public Button NoButton;
 	//OPTIONS MENU
-	public Canvas OptionsMenu;
-	public Canvas GraphicsMenu;
-	public Canvas AudioMenu;
-	public Canvas GameplayMenu;
-	public Button optionsbutton;
-	public Button graphicsButton;
-	public Button audioButton;
-	public Button gameplayButton;
+	//public Canvas OptionsMenu;
+	//public Canvas GraphicsMenu;
+	//public Canvas AudioMenu;
+	//public Canvas GameplayMenu;
+	//public Button optionsbutton;
+	//public Button graphicsButton;
+	//public Button audioButton;
+	//public Button gameplayButton;
 	//AUDIO OPTIONS
-	public Slider musicVolumeSlider;
+	//public Slider musicVolumeSlider;
 	public Slider masterVolumeSlider;
-	public AudioSource musicSource;
+	//public AudioSource musicSource;
 
     private UnityEngine.PostProcessing.PostProcessingBehaviour postProcessingbehaviour;
     private UnityEngine.PostProcessing.PostProcessingProfile profile;
@@ -64,14 +64,11 @@ public class SettingManager : MonoBehaviour
         //musicVolumeSlider.onValueChanged.AddListener (delegate { OnMusicVolumeChange();});
         masterVolumeSlider.onValueChanged.AddListener(delegate { OnMasterVolumeChange(); });
 
-
-
         resolutions = Screen.resolutions;
 		foreach (Resolution resolution in resolutions) 
 		{
 			resolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
 		}
-		LoadSettings ();
 
 		//EXIT SCRIPT:
 		/*
@@ -131,17 +128,7 @@ public class SettingManager : MonoBehaviour
 		//0 1=60 2=30
 		QualitySettings.vSyncCount = gameSettings.vSync = vSyncDropdown.value;
 	}
-	public void OnApplyButtonClick(bool clicked)
-	{
-		SaveSettings ();
-		if (clicked == true) {
-			OptionsMenu.gameObject.SetActive (clicked);
-			OptionsMenu.gameObject.SetActive (false);
-			OptionsMenu.enabled = false;
-			optionsbutton.enabled = true;
-		}
 
-	}
 	public void SaveSettings()
 	{
 		string jsonData = JsonUtility.ToJson (gameSettings, true);
@@ -163,67 +150,19 @@ public class SettingManager : MonoBehaviour
 		resolutionDropdown.RefreshShownValue();
 		Screen.fullScreen = gameSettings.fullscreen;
 	}
-	//EXIT MENU
-	public void OnExitClick(bool clicked)
-	{ if (clicked == true) {
-			quitMenu.gameObject.SetActive (clicked);
-			quitMenu.enabled = true;
-			exitText.enabled = false;
-		}
-	}
+
 	//EXITMENU: YES BUTTON 
 	public void OnYesClick(bool clicked)
 	{ if (clicked == true) {
 			ExitGame ();
 		}
 	}
-	//OPTIONS MENU
-	public void OnOptionsClick(bool clicked)
-	{ if (clicked == true) {
-			OptionsMenu.gameObject.SetActive (clicked);
-			OptionsMenu.enabled = true;
-			//optionsbutton.enabled = false;
-		}
-	}
-	//Graphics Menu
-	public void OnGraphicsClick(bool clicked)
-	{ if (clicked == true) {
-			OptionsMenu.gameObject.SetActive (clicked);
-			GraphicsMenu.gameObject.SetActive (clicked);
-			OptionsMenu.enabled = true;
-			GraphicsMenu.enabled = true;
-			AudioMenu.enabled = false;
-			//optionsbutton.enabled = false;
-		}
-	}
-	//Audio Menu
-	public void OnAudioClick(bool clicked)
-	{ if (clicked == true) {
-			OptionsMenu.gameObject.SetActive (clicked);
-			AudioMenu.gameObject.SetActive (clicked);
-			OptionsMenu.enabled = true;
-			GraphicsMenu.enabled = false;
-			AudioMenu.enabled = true;
-			//optionsbutton.enabled = false;
-		}
-	}
-	public void OnMusicVolumeChange()
-	{
-		musicSource.volume = gameSettings.musicVolume = musicVolumeSlider.value;
-	}
+
 	public void OnMasterVolumeChange()
 	{
 		AudioListener.volume = gameSettings.masterVolume = masterVolumeSlider.value;
 	}
 
-
-
-	//Allgemein
-	public void NoPress()
-	{
-		quitMenu.enabled = false;
-		exitText.enabled = true;
-	}
 	public void ExitGame()
 	{
 		Application.Quit ();

@@ -3869,13 +3869,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898da09840b5e904c9abcaed30c89d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelButtonPrefab: {fileID: 1823933884649004, guid: 89672b1118bfc6a48a58d944637c253b,
-    type: 2}
-  levelButtonContainer: {fileID: 0}
-  pointsText: {fileID: 0}
-  leftMenu: {fileID: 0}
-  middleMenu: {fileID: 0}
-  rightMenu: {fileID: 0}
+  pointsText: {fileID: 783034638}
+  leftMenu: {fileID: 298711692}
+  middleMenu: {fileID: 515899820}
+  rightMenu: {fileID: 498035750}
 --- !u!4 &780379756
 Transform:
   m_ObjectHideFlags: 0
@@ -3901,15 +3898,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyButton: {fileID: 0}
-  fullscreenToggle: {fileID: 0}
-  resolutionDropdown: {fileID: 0}
-  textureQualityDropdown: {fileID: 0}
-  AaDropdown: {fileID: 0}
-  vSyncDropdown: {fileID: 0}
-  bloomToggle: {fileID: 0}
-  paaToggle: {fileID: 0}
-  aoToggle: {fileID: 0}
-  tmToggle: {fileID: 0}
+  fullscreenToggle: {fileID: 1706450353}
+  resolutionDropdown: {fileID: 971618285}
+  textureQualityDropdown: {fileID: 1370677952}
+  AaDropdown: {fileID: 641451996}
+  vSyncDropdown: {fileID: 117836207}
+  bloomToggle: {fileID: 1114099290}
+  paaToggle: {fileID: 1996611137}
+  aoToggle: {fileID: 1813825342}
+  tmToggle: {fileID: 67181819}
   quitMenu: {fileID: 0}
   exitText: {fileID: 0}
   YesButton: {fileID: 0}
@@ -3923,7 +3920,7 @@ MonoBehaviour:
   audioButton: {fileID: 0}
   gameplayButton: {fileID: 0}
   musicVolumeSlider: {fileID: 0}
-  masterVolumeSlider: {fileID: 0}
+  masterVolumeSlider: {fileID: 1114095239}
   musicSource: {fileID: 0}
 --- !u!1 &783034636
 GameObject:
