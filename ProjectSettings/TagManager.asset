@@ -19,6 +19,9 @@ TagManager:
   - Wall_R
   - Main Menu
   - LevelController
+  - Easy
+  - Medium
+  - Hard
   layers:
   - Default
   - TransparentFX

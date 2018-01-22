@@ -43,7 +43,7 @@ public class AI : MonoBehaviour {
         {
             basePoint = new Vector3(0.88f, transform.position.y, 6.65f);
         }
-
+        Debug.Log("Difficulty: " + difficulty);
     }
 
 

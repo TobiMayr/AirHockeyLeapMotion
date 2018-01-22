@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         menuList.Add(leftMenu);
         menuList.Add(middleMenu);
         menuList.Add(rightMenu);
+
     }
 
     private void Update()
@@ -47,13 +48,13 @@ public class MainMenu : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             float swipeForce = touchPosition.x - Input.mousePosition.x;
-            if(Mathf.Abs(swipeForce) > swipeResistance)
+            if (Mathf.Abs(swipeForce) > swipeResistance)
             {
-                if(swipeForce < 0)
+                if (swipeForce < 0)
                 {
-                    for(int i = 1; i < menuList.Count; i++)
+                    for (int i = 1; i < menuList.Count; i++)
                     {
-                        if(currentMenu == menuList[i])
+                        if (currentMenu == menuList[i])
                         {
                             LookAtMenu(menuList[i - 1]);
                         }
@@ -97,4 +98,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

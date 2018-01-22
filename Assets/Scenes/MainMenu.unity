@@ -1556,7 +1556,7 @@ GameObject:
   - component: {fileID: 289456320}
   m_Layer: 5
   m_Name: Hard
-  m_TagString: Untagged
+  m_TagString: Hard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1622,7 +1622,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 514113879}
-        m_MethodName: hard
+        m_MethodName: SetHard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1991,7 +1991,7 @@ GameObject:
   - component: {fileID: 316888833}
   m_Layer: 5
   m_Name: Medium
-  m_TagString: Untagged
+  m_TagString: Medium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2057,7 +2057,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 514113879}
-        m_MethodName: normal
+        m_MethodName: SetMedium
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2836,6 +2836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52980f262df6ff41bc051c0fd7eec3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyValue: 0
 --- !u!4 &514113880
 Transform:
   m_ObjectHideFlags: 0
@@ -3897,7 +3898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a3a5957ac6dc45ba9b5c69ae5d199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyButton: {fileID: 0}
   fullscreenToggle: {fileID: 1706450353}
   resolutionDropdown: {fileID: 971618285}
   textureQualityDropdown: {fileID: 1370677952}
@@ -3907,21 +3907,7 @@ MonoBehaviour:
   paaToggle: {fileID: 1996611137}
   aoToggle: {fileID: 1813825342}
   tmToggle: {fileID: 67181819}
-  quitMenu: {fileID: 0}
-  exitText: {fileID: 0}
-  YesButton: {fileID: 0}
-  NoButton: {fileID: 0}
-  OptionsMenu: {fileID: 0}
-  GraphicsMenu: {fileID: 0}
-  AudioMenu: {fileID: 0}
-  GameplayMenu: {fileID: 0}
-  optionsbutton: {fileID: 0}
-  graphicsButton: {fileID: 0}
-  audioButton: {fileID: 0}
-  gameplayButton: {fileID: 0}
-  musicVolumeSlider: {fileID: 0}
   masterVolumeSlider: {fileID: 1114095239}
-  musicSource: {fileID: 0}
 --- !u!1 &783034636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5333,7 +5319,7 @@ GameObject:
   - component: {fileID: 1092593725}
   m_Layer: 5
   m_Name: Easy
-  m_TagString: Untagged
+  m_TagString: Easy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5379,7 +5365,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5399,7 +5385,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 514113879}
-        m_MethodName: easy
+        m_MethodName: SetEasy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5778,6 +5764,22 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!1 &1115830054 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 32ce2207c35db9e4a865bbf16272eb0c, type: 3}
+  m_PrefabInternal: {fileID: 1938475379}
+--- !u!114 &1115830055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1115830054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52980f262df6ff41bc051c0fd7eec3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyValue: 0
 --- !u!1 &1116955440
 GameObject:
   m_ObjectHideFlags: 0
