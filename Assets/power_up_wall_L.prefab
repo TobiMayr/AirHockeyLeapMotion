@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 23296004857075066}
   - component: {fileID: 54408098321347214}
   - component: {fileID: 114292511060656444}
+  - component: {fileID: 95813618207365616}
+  - component: {fileID: 114709249571807158}
   m_Layer: 0
   m_Name: power_up_wall_L
   m_TagString: Wall_R
@@ -58,7 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c9bd39ed104dff545bce741503b78bf6, type: 2}
+  - {fileID: 2100000, guid: 6f58430e2e5a3dc43b024a60c71fe047, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +114,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95813618207365616
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132328754482654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d27d398deebde95479a7bb41236e8e52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114292511060656444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,3 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ec841366adb346840e2e52b89f8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114709249571807158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132328754482654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ba1ef464a17334aa2f3c2fe05d7996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 82122516255157792, guid: 021a480dfc0394c4aabe8fd9aad27ee0, type: 2}

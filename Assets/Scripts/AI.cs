@@ -31,7 +31,7 @@ public class AI : MonoBehaviour {
 
         if (difficulty < 0.5f)
         { //easy
-            basePoint = new Vector3(0.88f, transform.position.y, 0.85f);
+            basePoint = new Vector3(0.88f, transform.position.y, -1.2f);
             difficulty = 0.2f;
         }
         else if (difficulty >= 0.5f && difficulty < 1f)
@@ -41,7 +41,7 @@ public class AI : MonoBehaviour {
         }
         else if (difficulty == 1f)
         {
-            basePoint = new Vector3(0.88f, transform.position.y, 6.65f);
+            basePoint = new Vector3(0.88f, transform.position.y, 6f);
         }
         Debug.Log("Difficulty: " + difficulty);
     }
@@ -52,7 +52,7 @@ public class AI : MonoBehaviour {
 	void Update () {
     counter += 1f * Time.deltaTime; //acts like a timer
 
-        if (Puck.transform.position.z >= -0.2f)
+        if (Puck.transform.position.z >= -1.2)
         { //if striker is in its half
             if (counter >= 1f)
             { //wait for one second to see if the stiker comes to you or stops, if it does not come then :
