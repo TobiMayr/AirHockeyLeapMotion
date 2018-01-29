@@ -23,6 +23,7 @@ TagManager:
   - Medium
   - Hard
   - powerupwallsound
+  - righthand
   layers:
   - Default
   - TransparentFX

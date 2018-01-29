@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Leap.Unity;
+using Leap;
 
 public class PlayerControl : MonoBehaviour
 {
     
    BoxCollider coll;
-    Rigidbody puck;
-    Rigidbody player;
+    Rigidbody puckr;
+    GameObject player;
+    Rigidbody playerr;
     GameObject pu;
     public float playerSpeed; //selbt setzten
     public float PuckSpeed;// puck geschwindigkeit
+    
+    GameObject controller;
+    public IHandModel handmodel;
     //AI ai;
     
     
@@ -24,10 +30,13 @@ public class PlayerControl : MonoBehaviour
     {
         // ai = GameObject.Find("AI").GetComponent<AI>();
         coll = GameObject.Find("Table").GetComponent<BoxCollider>();
-        puck = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
-       
+        puckr = GameObject.FindGameObjectWithTag("Puck").GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
+
         pu = GameObject.FindGameObjectWithTag("Puck");
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        playerr = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+       
+        controller = GameObject.Find("LeapHandController");
         
     }
 
@@ -63,21 +72,31 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Bewegung mit den tasten
-       
-        /*
-        if (Input.GetKey("left"))
-            transform.Translate(-playerSpeed * Time.deltaTime, 0f, 0f);
-        if (Input.GetKey("right"))
-            transform.Translate(playerSpeed * Time.deltaTime, 0f, 0f);
-        if (Input.GetKey("up"))
-            transform.Translate(0f, 0f, playerSpeed * Time.deltaTime);
-        if (Input.GetKey("down"))
-            transform.Translate(0f, 0f, -playerSpeed * Time.deltaTime);*/
+        //bewegung mit leap
+        Hand hand = handmodel.GetLeapHand();
+        if (hand != null)
+        {
+            transform.position = hand.PalmPosition.ToVector3();
+            player.transform.position = new Vector3(hand.PalmPosition.x, player.transform.position.y, hand.PalmPosition.z); 
+
+        }
 
 
-        //bewegung einschränken des players
-         if (transform.position.x <= -4.2f)
+            //Bewegung mit den tasten
+
+            /*
+            if (Input.GetKey("left"))
+                transform.Translate(-playerSpeed * Time.deltaTime, 0f, 0f);
+            if (Input.GetKey("right"))
+                transform.Translate(playerSpeed * Time.deltaTime, 0f, 0f);
+            if (Input.GetKey("up"))
+                transform.Translate(0f, 0f, playerSpeed * Time.deltaTime);
+            if (Input.GetKey("down"))
+                transform.Translate(0f, 0f, -playerSpeed * Time.deltaTime);*/
+
+
+            //bewegung einschränken des players
+            if (transform.position.x <= -4.2f)
              transform.position = new Vector3(-4.2f, transform.position.y, transform.position.z);
          if (transform.position.x >= 4.4f)
              transform.position = new Vector3(4.4f, transform.position.y, transform.position.z);
@@ -99,7 +118,7 @@ public class PlayerControl : MonoBehaviour
         if (c.gameObject.tag == "Puck")
         {
            // puck.velocity = c.;
-            puck.AddForce(c.relativeVelocity.x/10, 0, c.relativeVelocity.z/10, ForceMode.Impulse);
+            puckr.AddForce(c.relativeVelocity.x/10, 0, c.relativeVelocity.z/10, ForceMode.Impulse);
         }
         // code mit pfeil tasten
             /*if (c.gameObject.tag == "Puck")
