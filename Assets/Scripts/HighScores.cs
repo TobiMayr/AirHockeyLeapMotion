@@ -5,45 +5,65 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HighScores : MonoBehaviour {
+public class HighScores : MonoBehaviour
+{
 
     public GameObject scoreContainer;
     public GameObject oldScorePrefab;
     public GameObject newScorePrefab;
-    private bool isNewHighScore = true;
+    public Button deleteScoreButton;
     private string highscoresSerialized;
+    private Dictionary<string, int> highscores;
 
     // Use this for initialization
-    void Start () {
-        //PlayerPrefs.SetString("highscores", "lala" + "|" + "55" + "\\" + "hihi" + "|" + "5445" + "\\" + "hoho" + "|" + "51235" + "\\" + "ssss" + "|" + "515" + "\\" + "fffff" + "|" + "1" + "\\" + "eeeeee" + "|" + "2" + "\\");
+    void Start()
+    {
         highscoresSerialized = PlayerPrefs.GetString("highscores", "");
         var input = newScorePrefab.transform.GetChild(0).GetComponent<InputField>();
         var se = new InputField.SubmitEvent();
         se.AddListener(SaveNewHighScore);
         input.onEndEdit = se;
+        deleteScoreButton.onClick.AddListener(DeleteScores);
         LoadHighScores();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void DeleteScores()
+    {
+        PlayerPrefs.SetString("highscores", "");
+        LoadHighScores();
     }
 
     private void SaveNewHighScore(string arg0)
     {
-        string points = newScorePrefab.transform.GetChild(1).GetComponent<Text>().text;
-        if (isNewHighScore)
+        int points = Int32.Parse(newScorePrefab.transform.GetChild(1).GetComponent<Text>().text);
+        newScorePrefab.SetActive(false);
+        if (highscores.ContainsKey(arg0))
         {
-            newScorePrefab.SetActive(false);
-            PlayerPrefs.SetString("highscores", highscoresSerialized + arg0 + "|" + points + "\\");
+            if (highscores[arg0] < points)
+            {
+                highscores[arg0] = points;
+            }
         }
+        else
+        {
+            highscores.Add(arg0, points);
+        }
+        highscoresSerialized = SerializeHighScores(highscores);
+        PlayerPrefs.SetString("highscores", highscoresSerialized);
+
         LoadHighScores();
     }
 
     private void LoadHighScores()
     {
         highscoresSerialized = PlayerPrefs.GetString("highscores", "");
-        Dictionary<string, int> highscores = UnserializeHighScores(highscoresSerialized);
+        highscores = UnserializeHighScores(highscoresSerialized);
 
         //nehme nur die Top 10
         highscores = highscores.OrderByDescending(pair => pair.Value).Take(10)
@@ -51,7 +71,7 @@ public class HighScores : MonoBehaviour {
 
         foreach (Transform child in scoreContainer.transform)
         {
-            if(child.name != "NewScorePrefab")
+            if (child.name != "NewScorePrefab")
             {
                 Destroy(child.gameObject);
             }
@@ -70,7 +90,7 @@ public class HighScores : MonoBehaviour {
 
     }
 
-    private Dictionary<string, int>  UnserializeHighScores(string wholeString)
+    private Dictionary<string, int> UnserializeHighScores(string wholeString)
     {
         Dictionary<string, int> dict = new Dictionary<string, int>();
         var strings = wholeString.Split('\\');
@@ -91,6 +111,6 @@ public class HighScores : MonoBehaviour {
         {
             finalString += entry.Key.ToString() + "|" + entry.Value.ToString() + "\\";
         }
-        return "";
+        return finalString;
     }
 }
