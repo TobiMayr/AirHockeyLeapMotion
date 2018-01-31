@@ -1,4 +1,4 @@
-﻿# AirHockeyLeapMotion
+﻿# AirHockeyLeapMotion (LeapHockey)
 
 ## Titel des Projekts und Schliderung der Projektidee
 **"Leap Motion Air Hockey Game"**
@@ -18,9 +18,7 @@
 10. Hauptmenü. Menü aus dem das Spiel gestartet wird. Mit Buttons zu Start, Beenden etc..
 
 ## Systembild: Abbildungen der Komponenten Ihres Systems
-![alt text](https://github.com/TobiMayr/AirHockeyLeapMotion/blob/develop/Systembild%20AirHockey.jpg "Systembild")
+![alt text](https://github.com/TobiMayr/AirHockeyLeapMotion/blob/develop/Systembild%20AirHockey.png "Systembild")
 
 ## verwendete Technologien (Kinect, LeapMotion, Cardboard, Arduino); falls Sie eine andere Technologie einsetzen möchten, wenden Sie sich bitte zuvor an die Dozenten
 - Leap Motion
-
-## Interaktionstechniken: Wie sollen Nutzer mit Ihrem System interagieren können? Bitte geben Sie eine kurze Demonstration.
