@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public Text timerText;
     private float endTime;
     public float levelDuration;
-    public float TimerTime = 180; //3 minutes
+    public float TimerTime = 5;//180; //3 minutes
     public bool countDownDone = false;
     public GameObject GameMatchWin, GameMatchLose, GameArcadeWin, GameArcadeLose, PauseMenu;
     GameObject puck, player, ai, pS, eS, powerup_w, powerup_b; //pS - playerScore, eS - enemyScore
@@ -121,6 +121,7 @@ public class LevelManager : MonoBehaviour
         {
             
             GameArcadeWin.SetActive(true);
+            GameArcadeWin.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = PlayerScore.ToString();
         }
         else
         {
