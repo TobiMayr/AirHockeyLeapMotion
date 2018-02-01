@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public bool countDownDone = false;
     public GameObject GameMatchWin, GameMatchLose, GameArcadeWin, GameArcadeLose, PauseMenu;
     public Text newScorePrefab;
+    public GameObject UI;
     GameObject puck, player, ai, pS, eS, powerup_w, powerup_b; //pS - playerScore, eS - enemyScore
     public float AIScore;
     public float PlayerScore;
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Time.timeScale = 1;
         instance = this;
         endTime = Time.time + TimerTime;
 
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
         GameArcadeWin.SetActive(false);
         GameArcadeLose.SetActive(false);
         PauseMenu.SetActive(false);
+        UI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -46,6 +49,18 @@ public class LevelManager : MonoBehaviour
             switch (GameManager.selectedMode)
             {
                 case GameManager.GameMode.Match:
+                    UI.SetActive(false);
+                    if (PlayerScore >= 10)
+                    {
+                        Time.timeScale = 0;
+                        GameMatchWin.SetActive(true);
+
+                    }
+                    else if (AIScore >= 10)
+                    {
+                        Time.timeScale = 0;
+                        GameMatchLose.SetActive(true);
+                    }
                     break;
                 case GameManager.GameMode.Arcade:
                     DisplayTimeLeft();
@@ -60,21 +75,6 @@ public class LevelManager : MonoBehaviour
 
         pS.gameObject.GetComponent<TextMesh>().text = "YOU:" + PlayerScore;
         eS.gameObject.GetComponent<TextMesh>().text = "OPP:" + AIScore;
-        //endgame menu visible
-        if (GameManager.selectedMode == GameManager.GameMode.Match)
-        {
-            if (PlayerScore >= 10)
-            {
-                Time.timeScale = 0;
-                GameMatchWin.SetActive(true);
-
-            }
-            else if (AIScore >= 10)
-            {
-                Time.timeScale = 0;
-                GameMatchLose.SetActive(true);
-            }
-        }
         /*  if (selectedMode == GameMode.Arcade)
           {
               if(lm.levelDuration < 0)
@@ -121,9 +121,18 @@ public class LevelManager : MonoBehaviour
         levelDuration = endTime - Time.time;
         if (levelDuration < 0)
         {
-            
-            GameArcadeWin.SetActive(true);
-            GameArcadeWin.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = PlayerScore.ToString();
+            timerText.text = "00:00.00";
+            levelDuration = 1;
+            if (PlayerScore >= AIScore)
+            {
+                GameArcadeWin.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                GameArcadeLose.SetActive(true);
+            }
         }
         else
         {
@@ -142,9 +151,6 @@ public class LevelManager : MonoBehaviour
         else if (status == 0)
             puck.transform.position = new Vector3(0.06f, puck.transform.position.y, -4.59f);
 
-
-
-
         puck.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);//stop the striker
         player.transform.position = new Vector3(0.88f, player.transform.position.y, -8.17f);
         ai.transform.position = new Vector3(0.88f, ai.transform.position.y, 6.65f);
@@ -153,6 +159,10 @@ public class LevelManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        /*
+        endTime = Time.time + TimerTime;
+        UI.SetActive(true);
         GameMatchWin.SetActive(false);
         GameMatchLose.SetActive(false);
         GameArcadeWin.SetActive(false);
@@ -180,6 +190,7 @@ public class LevelManager : MonoBehaviour
         GameObject[] all4 = GameObject.FindGameObjectsWithTag("Wall_L");
         foreach (GameObject h in all4)
             Destroy(h);
+            */
     }
 
     public void LoadMenu()
